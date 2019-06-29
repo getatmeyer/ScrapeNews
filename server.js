@@ -2,7 +2,8 @@
 
 var express = require("express");
 var logger = require("morgan");
-var mangoose = require ("mongoose");
+
+var mongoose = require ("mongoose");
 var exphbs = require ("express-handlebars");
 // Require axios and cheerio. This makes the scraping possible
 var axios = require("axios");
@@ -27,16 +28,9 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-
-
-
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 // conntact to Mongoose DB
-if (process.env.MONGODB_URI) {
-	mongoose.connect(process.env.MONGODB_URI);
-}
-else {
-	mongoose.connect(databaseUrl);
-};
+
 
 // sets-ups
 
