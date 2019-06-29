@@ -41,30 +41,36 @@ app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with axios
     axios.get("https://www.nytimes.com/topic/subject/soccer").then(function(response) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
-      var $ = cherrio.load(response.data);
+      var $ = cheerio.load(response.data);
     // Now, we grab every h2 within an article tag, and do the following:
 
-    $("h2").each(function(i, element) {
+    $(".story-body").each(function(i, element) {
         var result = {};
 
         // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
-      .children("a")
+      .find(".headline")
+      // .children(".h2")
+      .text().trim()
+      result.summary = $(this)
+      .children("p")
       .text();
     result.link = $(this)
       .children("a")
       .attr("href");
+      console.log(result);
+      
     
       // Create a new Article using the `result` object built from scraping
-      db.Article.create(result)
-        .then(function(dbArticle) {
-          // View the added result in the console
-          console.log(dbArticle);
-        })
-        .catch(function(err) {
-          // If an error occurred, log it
-          console.log(err);
-        });
+      // db.Article.create(result)
+      //   .then(function(dbArticle) {
+      //     // View the added result in the console
+      //     console.log(dbArticle);
+      //   })
+      //   .catch(function(err) {
+      //     // If an error occurred, log it
+      //     console.log(err);
+      //   });
     });
 
     // Send a message to the client
