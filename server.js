@@ -16,7 +16,7 @@ var PORT = 3000;
 
 // Initialize Express
 var app = express();
-var port = process.env.PORT || 3000;
+// var port = process.env.PORT || 3000;
 
 // Configure middleware
 
@@ -31,7 +31,6 @@ app.use(express.static("public"));
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 // conntact to Mongoose DB
 
-
 // sets-ups
 
 // Routes
@@ -42,8 +41,8 @@ app.get("/scrape", function(req, res) {
     axios.get("https://www.nytimes.com/topic/subject/soccer").then(function(response) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(response.data);
-    // Now, we grab every h2 within an article tag, and do the following:
 
+    // Now, we grab every story-body within an article tag, and do the following:
     $(".story-body").each(function(i, element) {
         var result = {};
         // Add the text and href of every link, and save them as properties of the result object
@@ -68,7 +67,7 @@ app.get("/scrape", function(req, res) {
       db.Article.create(result)
         .then(function(dbArticle) {
     //   //     // View the added result in the console
-          // console.log(dbArticle);
+          console.log(dbArticle);
         })
         .catch(function(err) {
     //       // If an error occurred, log it
