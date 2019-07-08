@@ -8,10 +8,12 @@ var exphbs = require ("express-handlebars");
 // Require axios and cheerio. This makes the scraping possible
 var axios = require("axios");
 var cheerio = require("cheerio");
+var path = require("path")
+
 
 // Require all models
 var db = require("./models");
-console.log(db, "<--db");
+// console.log(db, "<--db");
 
 
 var PORT = 3000;
@@ -24,6 +26,9 @@ var port = process.env.PORT || 3000;
 
 // Use morgan logger for logging requests
 app.use(logger("dev"));
+
+app.use(express.static(path.join(__dirname, "public")));
+
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -105,8 +110,7 @@ app.get("/scrape", function(req, res) {
 
   });
   
-    
-
+  
     // Send a message to the client
 
     //return articlesFromScrape;
