@@ -4,19 +4,21 @@ var express = require("express");
 var logger = require("morgan");
 
 var mongoose = require ("mongoose");
-// var exphbs = require ("express-handlebars");
+var exphbs = require ("express-handlebars");
 // Require axios and cheerio. This makes the scraping possible
 var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
 var db = require("./models");
+console.log(db, "<--db");
+
 
 var PORT = 3000;
 
 // Initialize Express
 var app = express();
-// var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3000;
 
 // Configure middleware
 
@@ -27,12 +29,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
+app.engine("handlebars", exphbs({defaultLayout: "main"}));
+app.set("view engine", "handlebars");
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 // conntact to Mongoose DB
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.connect( MONGODB_URI, { useNewUrlParser: true });
+// mongoose.connect( process.env.MONGODB_URI, { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
+
+
 
 // sets-ups
-
+var articlesFromScrape = [];
 // Routes
 
 // A GET route for scraping nytime.com/soccer website
@@ -46,14 +55,14 @@ app.get("/scrape", function(req, res) {
     $(".story-body").each(function(i, element) {
         var result = {};
         // Add the text and href of every link, and save them as properties of the result object
-    result.title = $(this)
+    var myTitle = result.title = $(this)
       .find(".headline")
       // .children(".h2")
       .text().trim()
-    result.summary = $(this)
+    var mySum = result.summary = $(this)
       .find("p")
       .text().trim()
-    result.link = $(this)
+    var myLink = result.link = $(this)
       .children("a")
       .attr("href");
     // result.date = $(this)
@@ -61,24 +70,48 @@ app.get("/scrape", function(req, res) {
       // .children("dateline")
       // .text().trim()
       console.log(result);
-      
+
+      var infoToAdd = {
+        title: myTitle,
+        summary: mySum,
+        link: myLink
+      }
+      if (result.title && result.link) {
+        articlesFromScrape.push(infoToAdd)
+      //   .push("val")
+      }
     
       // Create a new Article using the `result` object built from scraping
-      db.Article.create(result)
+      // res.json("articlesFromScrape");
+          // res.send("Scrape Complete");
+
+    })
+    console.log ("all about article")
+  //  (function(articlesFromScrape) {
+     db.Article.create(articlesFromScrape)
         .then(function(dbArticle) {
+          res.send("Scrape Complete");
+
     //   //     // View the added result in the console
-          console.log(dbArticle);
+        //  console.log(dbArticle.length = ' created');
         })
+      
         .catch(function(err) {
     //       // If an error occurred, log it
+          res.send()
           console.log(err);
+        })
         });
-    });
+
+  });
+  
+    
 
     // Send a message to the client
-    res.send("Scrape Complete");
-  });
-});
+
+    //return articlesFromScrape;
+// });
+
 
 //Route for getting all Articles
 app.get("/articles", function(req, res) {
