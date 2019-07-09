@@ -13,7 +13,7 @@ var path = require("path")
 
 // Require all models
 var db = require("./models");
-// console.log(db, "<--db");
+console.log(db, "<--...database loading");
 
 
 var PORT = 3000;
@@ -43,9 +43,7 @@ mongoose.connect( MONGODB_URI, { useNewUrlParser: true });
 // mongoose.connect( process.env.MONGODB_URI, { useNewUrlParser: true });
 // mongoose.connect("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
 
-
-
-// sets-ups
+// sets-up array
 var articlesFromScrape = [];
 // Routes
 
@@ -61,9 +59,15 @@ app.get("/scrape", function(req, res) {
         var result = {};
         // Add the text and href of every link, and save them as properties of the result object
     var myTitle = result.title = $(this)
+
+    var card = $("<div class='card'>");
+    var cardHeader = $("<div class='card-header'>").append(
+       $("<a class='articleHeader")
       .find(".headline")
       // .children(".h2")
       .text().trim()
+      
+    )
     var mySum = result.summary = $(this)
       .find("p")
       .text().trim()
@@ -91,7 +95,7 @@ app.get("/scrape", function(req, res) {
           // res.send("Scrape Complete");
 
     })
-    console.log ("all about article")
+    // console.log ("all about article")
   //  (function(articlesFromScrape) {
      db.Article.create(articlesFromScrape)
         .then(function(dbArticle) {
@@ -171,3 +175,22 @@ return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id },
 app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
   });
+
+  function handleRequest(req, res) {
+
+    // Capture the url the request is made to
+    var path = req.url;
+  
+    // Depending on the URL, display a different HTML file.
+    switch (path) {
+  
+    case "/":
+      return displayRoot(path, req, res);
+  
+    case "/saved":
+      return displayPortfolio(path, req, res);
+  
+    default:
+      return display404(path, req, res);
+    }
+  }

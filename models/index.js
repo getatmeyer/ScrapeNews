@@ -1,4 +1,9 @@
-// Exporting an object containing all of our models
+$(document).ready(function() {
+
+  $(document).on("click", ".scrape-new", handleNewScrape);
+  $(document).on("click", ".scape-saved", handleSave);
+});
+
 
 module.exports = {
     Article: require("./Article"),
