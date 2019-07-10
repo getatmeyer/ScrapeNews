@@ -176,21 +176,21 @@ app.listen(PORT, function() {
     console.log("App running on port " + PORT + "!");
   });
 
-  function handleRequest(req, res) {
+  // function handleRequest(req, res) {
 
-    // Capture the url the request is made to
-    var path = req.url;
+  //   // Capture the url the request is made to
+  //   var path = req.url;
   
-    // Depending on the URL, display a different HTML file.
-    switch (path) {
+  //   // Depending on the URL, display a different HTML file.
+  //   switch (path) {
   
-    case "/":
-      return displayRoot(path, req, res);
+  //   case "/":
+  //     return displayRoot(path, req, res);
   
-    case "/saved":
-      return displayPortfolio(path, req, res);
+  //   case "/saved":
+  //     return displayPortfolio(path, req, res);
   
-    default:
-      return display404(path, req, res);
-    }
-  }
+  //   default:
+  //     return display404(path, req, res);
+  //   }
+  // }
