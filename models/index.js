@@ -1,8 +1,8 @@
-$(document).ready(function() {
+// $(document).ready(function() {
 
-  $(document).on("click", ".scrape-new", handleNewScrape);
-  $(document).on("click", ".scape-saved", handleSave);
-});
+//   $(document).on("click", ".scrape-new", handleNewScrape);
+//   $(document).on("click", ".scape-saved", handleSave);
+// });
 
 
 module.exports = {
