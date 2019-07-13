@@ -23,15 +23,13 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 // Configure middleware
-
 // Use morgan logger for logging requests
 app.use(logger("dev"));
-
 app.use(express.static(path.join(__dirname, "public")));
-
 // Parse request body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Make public a static folder
 app.use(express.static("public"));
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
@@ -66,7 +64,7 @@ app.get("/scrape", function(req, res) {
       .find(".headline")
       // .children(".h2")
       .text().trim()
-      
+
     )
     var mySum = result.summary = $(this)
       .find("p")
@@ -87,7 +85,7 @@ app.get("/scrape", function(req, res) {
       }
       if (result.title && result.link) {
         articlesFromScrape.push(infoToAdd)
-      //   .push("val")
+     
       }
     
       // Create a new Article using the `result` object built from scraping
@@ -170,6 +168,9 @@ return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id },
     res.json(err);
   });
 });
+
+//routing
+require("./routing/htmlRoutes")(app);
 
 // Start the server
 app.listen(PORT, function() {

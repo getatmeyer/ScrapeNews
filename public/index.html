@@ -5,7 +5,7 @@
     <title>Soccer Scraper</title>
     <!-- links section -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Faster+One|Fredericka+the+Great&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
 
     <style>
             body { background-color: #202020;
@@ -16,6 +16,7 @@ p {
   padding: 15px;
   border-radius: 20px;
   /* color: blue; */
+  
 }
 #wrapper {
         margin-right: auto;
@@ -23,16 +24,19 @@ p {
         
 }
 h1 {
-         /* font-family: 'Faster One', cursive; */
-        font-family: 'Fredericka the Great', cursive;
-        color: blanchedalmond;
-        font-size:77px;
-        text-align: center;
+         font-family: 'Sedgwick Ave Display', cursive;
+         background: linear-gradient(to left, #FFFFFF 0%, #C0C0C0 100%);
+         -webkit-background-clip: text;
+	       -webkit-text-fill-color: transparent;
+         font-size: 110px;
+         text-align: center;
+         padding-top: 100px;
+         
+
 }
 .jumbo {
         
-        width:990px;
-        height:305px;
+        height: 425px;
         background-position:center;
         /* BACKGROUND IMAGE */
         background-image: url("field.jpg");
@@ -42,7 +46,9 @@ h1 {
     background-size: cover;
         
 }
-
+h5 {
+  color: white;
+}
 #articles {
         display: inline-block;
         overflow: auto;
@@ -77,13 +83,22 @@ h1 {
   position: absolute;
   top: 20px;
   right: 20px;
+  
+}
+#card-header {
+  text-align: center;
+}
+li {
+  margin-left:20px;
 }
 .card .card-header .articleHeader {
   color: white;
   display: inline-block;
   width: 80%;
 }
-         
+   /* #dark {
+     
+   }       */
 
             </style>
 </head>
@@ -102,10 +117,10 @@ h1 {
                                       <a class="nav-link" href="/saved">Saved Articles</a>
                                     </li>
                                     <li class="nav-item">
-                                      <a class="btn btn-outline-success">Scrape NEW ARTICLES</a>
+                                      <a class="btn btn-outline-primary">Scrape NEW ARTICLES</a>
                                     </li>
                                     <li class="nav-item">
-                                                <a class="btn btn-outline-danger">Clear ARTICLES</a>
+                                                <div id="dark"><a class="btn btn-outline-dark">Clear ARTICLES</a></div>
                                     </li>
                                   </ul>
                                 </div>
@@ -128,6 +143,7 @@ h1 {
                     <p>Summary</p>
                 </div>
               </div>
+            
 
 
         <div id="articles"></div>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>Soccer Scraper</title>
+    <!-- links section -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+
+    <style>
+        body{ 
+            background-color: #202020;
+            }
+
+        p {
+            background-color: white;
+            margin-top: 40px;
+            padding: 15px;
+            border-radius: 20px;
+  /* color: blue; */
+        }
+
+        #wrapper {
+        margin-right: auto;
+        margin-left: auto;
+        
+        }
+
+        .jumbo {
+        height:425px;
+        background-position:center;
+        /* BACKGROUND IMAGE */
+        background-image: url("field.jpg");
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        
+        }
+
+        h1 {
+            font-family: 'Sedgwick Ave Display', cursive;
+         background: linear-gradient(to left, #FFFFFF 0%, #C0C0C0 100%);
+         -webkit-background-clip: text;
+	       -webkit-text-fill-color: transparent;
+         font-size: 110px;
+         text-align: center;
+         padding-top: 100px;
+        }
+
+        #articles {
+        display: inline-block;
+        overflow: auto;
+        width: 48%;
+        /* height: 330px; */
+        padding-top: 30px;
+      }
+
+      #notes {
+        float: right;
+        width: 20%;
+      }
+      textarea, input {
+        display: block;
+        width: 100%;
+        background-color: #FCF5C7;
+      }
+      input {
+        height: 36px;
+        font-size: 24px;
+      }
+      textarea {
+        height: 200px;
+        font-size: 18px;
+      }
+
+      .card {
+              width: 70%;
+      }
+      .card-header {
+              height: 80px;
+      }
+      .card .card-header .btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  
+}
+
+#card-header {
+  text-align: center;
+}
+li {
+  margin-left:20px;
+}
+.card .card-header .articleHeader {
+  color: white;
+  display: inline-block;
+  width: 80%;
+}
+
+
+</style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Soccer Scraper</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/saved">Saved Articles</a>
+            </li>
+            
+            <li class="nav-item">
+                        <a class="btn btn-outline-dark">Clear ARTICLES</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+<div id= "wrapper">
+<div class= "jumbo">
+<div class="heading">
+<h1>Soccer Scraper</1>
+</div>
+</div>
+</div>
+
+<div class="card">
+        <div class="card-header">
+         <!-- <div id="articles"></div> -->
+          <a class="articleHeader"></a>
+          <a class="btn btn-success save">Save Article</a>
+
+        </div>
+        <div class="card-body">
+            <p>Summary</p>
+        </div>
+      </div>
+
+
+
+
+</body>
+
+</html>
