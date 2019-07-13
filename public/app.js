@@ -2,9 +2,21 @@
 $.getJSON("/articles", function(data) {
 
 for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].summary +  "<br />" + data[i].link + "</p>");
+  var newArticle= `<div data-id=${data[i]._id}  class="card-header">
+  <a class="articleHeader" href=${data[i].link}>${data[i].title}</a>
+  <a class="btn btn-success save">Save Article</a>
 
+</div>
+<div class="card-body">
+  <p>Summary</p>
+${data[i].summary}
+</div>
+</div>`
+
+console.log(newArticle)
+    // Display the apropos information on the page
+    // $(√"#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].summary +  "<br />" + data[i].link + "</p>");
+    $("#articles").append(newArticle)
 }
 });
 
