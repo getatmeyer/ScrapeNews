@@ -16,7 +16,7 @@ var db = require("./models");
 console.log(db, "<--...database loading");
 
 
-var PORT = 3000;
+var port = 3000;
 
 // Initialize Express
 var app = express();
@@ -59,13 +59,12 @@ app.get("/scrape", function(req, res) {
     var myTitle = result.title = $(this)
 
     var card = $("<div class='card'>");
-    var cardHeader = $("<div class='card-header'>").append(
-       $("<a class='articleHeader")
+    var cardHeader = $("<div class='card-header'>")
       .find(".headline")
       // .children(".h2")
       .text().trim()
 
-    )
+    
     var mySum = result.summary = $(this)
       .find("p")
       .text().trim()
@@ -173,8 +172,8 @@ return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id },
 require("./routing/htmlRoutes")(app);
 
 // Start the server
-app.listen(PORT, function() {
-    console.log("App running on port " + PORT + "!");
+app.listen(port, function() {
+    console.log("App running on port " + port + "!");
   });
 
   

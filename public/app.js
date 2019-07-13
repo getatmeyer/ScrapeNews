@@ -3,7 +3,7 @@ $.getJSON("/articles", function(data) {
 
 for (var i = 0; i < data.length; i++) {
   var newArticle= `<div data-id=${data[i]._id}  class="card-header">
-  <a class="articleHeader" href=${data[i].link}>${data[i].title}</a>
+  <a class="articleHeader" target="_blank" href=${data[i].link}>${data[i].title}</a>
   <a class="btn btn-success save">Save Article</a>
 
 </div>
