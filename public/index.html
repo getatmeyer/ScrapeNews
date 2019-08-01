@@ -11,7 +11,7 @@
 
   <style>
     body {
-      background-color: #202020;
+      /* background-color: #202020; */
     }
 
     p {
@@ -61,7 +61,7 @@
     #articles {
       display: inline-block;
       overflow: auto;
-      width: 48%;
+      width: 68%;
       /* height: 330px; */
       padding-top: 30px;
     }
@@ -139,10 +139,10 @@
           <a class="nav-link" href="/saved">Saved Articles</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-outline-primary">Scrape NEW ARTICLES</a>
+          <a href="/scrape" class="btn btn-outline-primary">Scrape NEW ARTICLES</a>
         </li>
         <li class="nav-item">
-          <div id="dark"><a class="btn btn-outline-dark">Clear ARTICLES</a></div>
+          <div id="clearDB"><a class="btn btn-outline-dark">Clear ARTICLES</a></div>
         </li>
       </ul>
     </div>
@@ -154,7 +154,9 @@
       </div>
     </div>
   </div>
+
   <div id="articles"></div>
+  <div id="summaries"></div>
 
   <div class="card">
     <div class="card-header">
@@ -162,13 +164,17 @@
       <a class="articleHeader"></a>
       <a class="btn btn-success save">Save Article</a>
 
-    </div>
-    <div class="card-body">
-      <p>Summary</p>
-    <!-- <div id="articles"></div> -->
+      <div class="card-summary">
+        <p class="article-summary"></p>
 
+      </div>
     </div>
   </div>
+
+
+
+  <!-- <div id="articles"></div> -->
+
 
 
 

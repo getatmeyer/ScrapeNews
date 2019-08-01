@@ -1,24 +1,44 @@
 // Grab the articles as a json
+
 $.getJSON("/articles", function(data) {
 
 for (var i = 0; i < data.length; i++) {
-  var newArticle= `<div data-id=${data[i]._id}  class="card-header">
-  <a class="articleHeader" target="_blank" href=${data[i].link}>${data[i].title}</a>
-  <a class="btn btn-success save">Save Article</a>
+  // var newArticle= `<div data-id=${data[i]._id}  class="card-header">
+  var newArticle= `<div class="article_body">
+  <a class="articleHeader" target="_blank"
+  href=${data[i].link}>${data[i].title}</a>
+  <div data-id=${data[i]._id}
+  class="article_summary">
+  <p class="article-summary">
+  ${data[i].summary}
+  </p>
+  <button data-id="${data[i]._id}" class="btn btn-success save">Save Article</a>  
+  </div>`
+$("#articles").append(newArticle)
 
-</div>
-<div class="card-body">
-  <p>Summary</p>
-${data[i].summary}
-</div>
-</div>`
 
-console.log(newArticle)
+// var newSummary= `<div data-id=${data[i]._id}  class="card-summary">
+//   <p class="article-summary" href=${data[i].summary}</p>
+
+
+//   </div>`
+//   $("#summaries").append(newSummary)
+
+}}
+
+);
+// console.log(newArticle)
     // Display the apropos information on the page
     // $(√"#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].summary +  "<br />" + data[i].link + "</p>");
-    $("#articles").append(newArticle)
-}
-});
+
+
+// for (var j = 0; j < data.length; j++) {
+//   var newSummary= `<div data-id=${data[i]._id}  class="card-body">
+//   <a class="cardBody" href=${data[i].summary}</a>
+//   </div>`
+
+  // $("#summaries").append(newSummary)
+
 
 $(document).on("click", "p", function() {
       // Empty the notes from the note section
@@ -86,3 +106,12 @@ $(document).on("click", "p", function() {
             $("#bodyinput").val("");
 });
 
+//CLEAR ARTICLES CLICK EVENT
+
+//Make a delete request to /articles/clear  
+ $(document).on("click", "#clearDB", function() {
+    $.get("/articles/clear")
+    .then(response => console.log(response))
+    .catch(err => console.log(err));
+    
+ })
